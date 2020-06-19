@@ -1,0 +1,19 @@
+{
+  "name": "projetjavascript",
+  "version": "1.0.0",
+  "description": "Projet de javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dersyp/PROJETJAVASCRIPT.git"
+  },
+  "author": "Mathieu Termet, Clément Hyaumet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dersyp/PROJETJAVASCRIPT/issues"
+  },
+  "homepage": "https://github.com/dersyp/PROJETJAVASCRIPT#readme"
+}
