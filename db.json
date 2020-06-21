@@ -3,7 +3,7 @@
     {
       "login": "q",
       "pseudo": "q",
-      "hashedPassword": "$2b$10$ggsFFDASooiZFE5/Ptujt.PA.GfeQP/.hqavdlWLL9wE8D0tYcngq",
+      "hashedPassword": "$2b$10$YkMh.tfEVM2aohNAXkSZD.y.duPSZfobXeHgAlUKI6DJOBnJFQDxO",
       "scores": {
         "scorejeu1": 0,
         "scorejeu2": 0,
@@ -12,5 +12,10 @@
       }
     }
   ],
-  "scoresGame": []
+  "scoresGame": [
+    {
+      "name": "game1",
+      "highScore": "5"
+    }
+  ]
 }

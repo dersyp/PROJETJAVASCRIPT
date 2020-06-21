@@ -1,9 +1,7 @@
 class ScoreGame{
-	constructor(name, highScore, avgScore, worseScore){
+	constructor(name, highScore){
 		this.name = name
 		this.highScore = highScore
-		this.avgScore = avgScore
-		this.worseScore = worseScore
 	}
 
 }

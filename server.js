@@ -49,7 +49,7 @@ router.get('/register',checkNotAuthenticated, function(requestHTTP, responseHTTP
 })
 
 router.get('/game1',checkAuthenticated, function(requestHTTP, responseHTTP, next){
-	responseHTTP.render('game1.ejs')
+	responseHTTP.render('game1.ejs', {scoresList: dbScoreGame.getScoreByname('game1')})
 })
 router.post('/register',checkNotAuthenticated, async function(requestHTTP, responseHTTP, next){
  	// traitement inscription 
@@ -83,26 +83,32 @@ router.post('/login',checkNotAuthenticated,passport.authenticate('local', {
 }));
 
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+router.get('/logout', function(requestHTTP, responseHTTP){
+  requestHTTP.logout();
+  responseHTTP.redirect('/');
 });
 
 
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
+router.post('/game1',checkAuthenticated,function(requestHTTP, responseHTTP){
+	console.log(requestHTTP.body.clicksNumber)
+	dbScoreGame.updateGame("game1",requestHTTP.body.clicksNumber)
+});
+
+
+function checkAuthenticated(requestHTTP, responseHTTP, next) {
+  if (requestHTTP.isAuthenticated()) {
     return next()
   }
-  if(req.cookies['login']){
-  	  res.redirect('/login')
+  if(requestHTTP.cookies['login']){
+  	  responseHTTP.redirect('/login')
   }else{
-  	  res.redirect('/register')
+  	  responseHTTP.redirect('/register')
   }
 }
 
-function checkNotAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect('/')
+function checkNotAuthenticated(requestHTTP, responseHTTP, next) {
+  if (requestHTTP.isAuthenticated()) {
+    return responseHTTP.redirect('/')
   }
   next()
 }

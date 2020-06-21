@@ -7,15 +7,21 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title> Inscrivez-vous </title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="/JS/script.js"></script>
+	<script src="/JS/game1.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/CSS/main.css">
 </head>
 <body class="register">
 
-<div class="form">
-	<h1> Jeu 1 </h1>
+	<div class="form">
+		<h1> Jeu 1 </h1>
+		<p> Tableau des scores </p>
+		<p> Meilleur score : <%= scoresList.highScore %> </p>
+		<p id="timer"></p>
+		<p id="scorePlayer"></p>
+		<div id="clickArea" style="background-color: red; width: 200px; height: 200px;"></div>
+		<p> Clique sur la zone pour commencer ! </p>
+	</div>
 
-</div>
 </body>
 </html>
