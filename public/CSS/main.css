@@ -4,10 +4,10 @@
 body{
     margin: 0;
 }
-.login{
+.login, .register{
     background: linear-gradient(to right, #ffdd00 0%, #ff5d00 100%);
 }
-.login .form{
+.login .form, .register .form{
     display: flex;
     flex-direction: column;
     width: 30vw;
@@ -18,7 +18,7 @@ body{
     text-align: center;
     padding: 0 5vw;
 }
-.login .form form{
+.login .form form, .register .form form{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -68,7 +68,7 @@ body{
     box-shadow: 0 2px 0 0 #ffd600;
 }
 
-.login .submit{
+.login .submit, .register .submit{
     text-transform: uppercase;
     font-weight: 700;
     font-size: 18px;
@@ -85,13 +85,15 @@ body{
     outline: none;
 }
 
-.login .submit:hover{
+.login .submit:hover,.register .submit:hover{
 cursor: pointer;
     transition: all .4s ease-in-out;
     background-position: 100% 0;
 }
-.login a {
-    color: white;
+.login a, .register a {
+    color: orange;
+    font-weight: bold;
+   text-decoration: none;
 }
 .login h1, .register h1 {
     background: linear-gradient(to right, #ffdd00 0%, #ff5d00 100%);
