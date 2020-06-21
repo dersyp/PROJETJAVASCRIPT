@@ -20,6 +20,17 @@ npm install passport
 Installtion de passport-local :
 npm install passport-local
 
+
+Installation de express-session : (Pour rendre notre connexion persistente)
+npm install express-session
+
+Installation de express-flash : (Pour afficher les erreurs de mot de passe)
+npm install express-flash
+
+Installation de dotenv : (Permet de charger les variables d'environnement du fichier .env)
+npm install dotenv
+
+
 Lancer le serveur :
 node index.js
 

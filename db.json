@@ -6,9 +6,14 @@
       "hashedPassword": "$2b$10$MZcolYJdhJ/o.L/kh0PaNOoMHu3Wv632tkmmQQBf2S8tgTHKrZNk6"
     },
     {
-      "login": "zefet",
-      "pseudo": "azertyui",
-      "hashedPassword": "$2b$10$J842ij61.9Ru9r3j8kA4le1bTe4KtuzzQ3LnSBj3Izs/wvejfIlWy"
+      "login": "mathieu",
+      "pseudo": "mathieu",
+      "hashedPassword": "$2b$10$/11SvN/aOFt7kIHK2vzE7euzbq8CNflPZZ.85gIM1hV5Y2yw0uFVu"
+    },
+    {
+      "login": "clem",
+      "pseudo": "clem",
+      "hashedPassword": "$2b$10$rz535CwhG4CZcJ5oiCW6WeAoXQhp65vaTmbh2VlAWyoaXmI/xhNoK"
     }
   ]
 }

@@ -1,32 +1,52 @@
+//Permet de charger les variables d'envrironnement 
+ require('dotenv').config();
+
+/*
+	TO DO : 
+	- Rajouter le port et d'autres variables dans le fichier .env
+
+
+*/ 
 const express = require('express')
 const app = express()
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const player_service = require('./models/player_service.js')
 const player = require('./models/player.js')
-
+const flash = require('express-flash')
+const session = require('express-session')
 const dbPlayer = new player_service()
 const passport = require('passport')
 
+
+app.set('view-engine', 'ejs')
+//https://github.com/expressjs/body-parser#bodyparserurlencodedoptions
+app.use(express.urlencoded({ extended: false }))
+app.use(flash())
+app.use(session({
+	secret: process.env.SECRET_KEY,
+	resave: false,
+	saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 const initializePassport = require('./passport-config.js');
 initializePassport(passport, dbPlayer.getPlayerByLogin)
 
-//https://github.com/expressjs/body-parser#bodyparserurlencodedoptions
-app.use(express.urlencoded({ extended: false }))
-
-app.set('view-engine', 'ejs')
-router.get('/', function(requestHTTP, responseHTTP, next){
-	responseHTTP.render('home.ejs')
+router.get('/', checkAuthenticated, function(requestHTTP, responseHTTP, next){
+	console.log("HOME PAGE ")
+	responseHTTP.render('home.ejs',{pseudo: requestHTTP.user.pseudo})
 })
 
-router.get('/login', function(requestHTTP, responseHTTP, next){
+router.get('/login',checkNotAuthenticated, function(requestHTTP, responseHTTP, next){
 	responseHTTP.render('login.ejs')
 })
-router.get('/register', function(requestHTTP, responseHTTP, next){
+router.get('/register',checkNotAuthenticated, function(requestHTTP, responseHTTP, next){
 	responseHTTP.render('register.ejs')
 })
 
-router.post('/register', async function(requestHTTP, responseHTTP, next){
+router.post('/register',checkNotAuthenticated, async function(requestHTTP, responseHTTP, next){
  	// traitement inscription 
  	console.log("Inscription ")
  	console.log(requestHTTP.body)
@@ -45,7 +65,7 @@ router.post('/register', async function(requestHTTP, responseHTTP, next){
  	}
 })
 
-router.post('/login',passport.authenticate('local', { 
+router.post('/login',checkNotAuthenticated,passport.authenticate('local', { 
 	successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
@@ -57,7 +77,20 @@ router.post('/find', function(requestHTTP, responseHTTP, next){
 })
 
 
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
 
+  res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
+  next()
+}
 
 app.use('/',router)
 app.use(express.static(__dirname + '/public'))

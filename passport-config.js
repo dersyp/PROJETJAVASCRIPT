@@ -27,11 +27,9 @@ function initialize(passport, getPlayerByLogin){
 
 
 	passport.serializeUser((player,done) => done(null, player.login))
-	passport.deserializeUser(function(login, done) {
-		 passport.deserializeUser((login, done) => {
-    		return done(null, getPlayerByLogin(login))
-  		})
-	});
+	passport.deserializeUser((login, done) => {
+		return done(null, getPlayerByLogin(login))
+	})
 }
 
 
