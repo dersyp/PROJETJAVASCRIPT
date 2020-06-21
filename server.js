@@ -6,6 +6,10 @@ const player_service = require('./models/player_service.js')
 const player = require('./models/player.js')
 
 const dbPlayer = new player_service()
+const passport = require('passport')
+
+const initializePassport = require('./passport-config.js');
+initializePassport(passport, dbPlayer.getPlayerByLogin)
 
 //https://github.com/expressjs/body-parser#bodyparserurlencodedoptions
 app.use(express.urlencoded({ extended: false }))
@@ -30,15 +34,8 @@ router.post('/register', async function(requestHTTP, responseHTTP, next){
  		//https://medium.com/@mridu.sh92/a-quick-guide-for-authentication-using-bcrypt-on-express-nodejs-1d8791bb418f
  		// Recupère le hash du mot de passe (Fonction asynchrone)
  		const hash = await bcrypt.hash(requestHTTP.body.password,10)
- 		// Envoyer
- 		// player_service.create({
- 		// 	pseudo: req.body.pseudo,
- 		// 	login: req.body.login,
- 		// 	password: hash
- 		// })
  		console.log(requestHTTP.body.pseudo + requestHTTP.body.login + hash)
  		dbPlayer.createPlayer(new player(requestHTTP.body.pseudo, requestHTTP.body.login, hash))
-
  		console.log("Redirect to login page")
  		responseHTTP.redirect('/login')
  	}catch(error){
@@ -48,16 +45,18 @@ router.post('/register', async function(requestHTTP, responseHTTP, next){
  	}
 })
 
-router.post('/login', async function(requestHTTP, responseHTTP, next){
-// traitement login
-	console.log("Login")
-	console.log(requestHTTP.body)
-	// récupérer le hash du mot de passe de l'utilisateur grâce au login
-	// puis comparer les hash.
-	password = '';
+router.post('/login',passport.authenticate('local', { 
+	successRedirect: '/',
+    failureRedirect: '/login'
+    failureFlash: true
+}));
 
-	await bcrypt.compare(req.body.password,password)
+//Fonction de test 
+router.post('/find', function(requestHTTP, responseHTTP, next){
+	dbPlayer.getPlayerByLogin(requestHTTP.body.login);
 })
+
+
 
 
 app.use('/',router)
@@ -66,4 +65,3 @@ app.use(express.static(__dirname + '/public'))
 app.listen(3000, function(){
 	console.log("Server listening on port 3000")
 })
-

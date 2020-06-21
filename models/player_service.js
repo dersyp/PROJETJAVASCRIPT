@@ -9,7 +9,7 @@ class Player_service{
 		db.defaults({ players: [] }).write()
 	}
 	createPlayer(player){
-		console.log("Create Player")
+		console.log("[CreatePlayer]")
 		console.log(player)
 		db.get('players').push({ 
 			login: player.login, 
@@ -17,11 +17,26 @@ class Player_service{
 			hashedPassword: player.hashedPassword
 		}).write()
 	}
-	async deletePlayer(login){
-		console.log("Delete player")
+	deletePlayer(login){
+		console.log("[deletePlayer]")
 
 	}
-	async readPlayers() {
+
+	getPlayerByLogin(login){
+		console.log("[getPlayerByLogin] Recherche du joueur qui a le login " + login)
+		let info = db.get('players')
+		  .find({ login: login })
+		  .value()
+		 console.log(info)
+		 let player = null;
+		 if(info){
+		 	player = new Player(info.pseudo, info.login, info.hashedPassword)
+		 }else{
+		 	console.log("Player pas existant")
+		 }
+		return player;
+	}
+	readPlayers() {
 		// Get all players
 		const players = db.get("players").value();
 		return players;

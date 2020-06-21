@@ -4,7 +4,9 @@
 	<title> Connectez-vous </title>
 </head>
 <body>
-
+	<% if (messages.error) { %>
+  	<%= messages.error %>
+	<% } %>
 	<h1> Connexion </h1>
 	<form method="POST" action="/login">
 		<label> Login </label>
