@@ -1,29 +1,15 @@
 {
   "players": [
     {
-      "login": "sdff",
-      "pseudo": "sdfs",
-      "hashedPassword": "$2b$10$MZcolYJdhJ/o.L/kh0PaNOoMHu3Wv632tkmmQQBf2S8tgTHKrZNk6"
-    },
-    {
-      "login": "zefet",
-      "pseudo": "azertyui",
-      "hashedPassword": "$2b$10$J842ij61.9Ru9r3j8kA4le1bTe4KtuzzQ3LnSBj3Izs/wvejfIlWy"
-    },
-    {
-      "login": "fefefe",
-      "pseudo": "",
-      "hashedPassword": "$2b$10$HKPRx8aUIuXCsfeABXDvqOym4b6BZn2JkTYGlNN.q8zSYGmHvnBhW"
-    },
-    {
-      "login": "cucucu",
-      "pseudo": "cucucu",
-      "hashedPassword": "$2b$10$mBNA5PhXi6ojryiJCDQzIeVod8wctQhcKZvwM/ZaY/QaXkA.DiEcu"
-    },
-    {
-      "login": "cucucu",
-      "pseudo": "cucucu",
-      "hashedPassword": "$2b$10$LZ2KbNgyuATe9YZe9NEQdO/CquGNqo4bwbpUq6UFHfbXpd3.S1y8G"
+      "login": "q",
+      "pseudo": "q",
+      "hashedPassword": "$2b$10$ggsFFDASooiZFE5/Ptujt.PA.GfeQP/.hqavdlWLL9wE8D0tYcngq",
+      "scores": {
+        "scorejeu1": 0,
+        "scorejeu2": 0,
+        "scorejeu3": 0,
+        "scorejeu4": 0
+      }
     }
   ]
 }

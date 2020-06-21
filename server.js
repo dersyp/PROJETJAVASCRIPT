@@ -4,7 +4,7 @@
 /*
 	TO DO : 
 	- Rajouter le port et d'autres variables dans le fichier .env
-
+	-http://www.passportjs.org/packages/passport-github/
 
 */ 
 const express = require('express')
@@ -17,7 +17,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const dbPlayer = new player_service()
 const passport = require('passport')
-
+const cookieparser = require('cookie-parser')
 
 app.set('view-engine', 'ejs')
 //https://github.com/expressjs/body-parser#bodyparserurlencodedoptions
@@ -28,7 +28,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }))
-
+app.use(cookieparser())
 app.use(passport.initialize())
 app.use(passport.session())
 const initializePassport = require('./passport-config.js');
@@ -36,6 +36,7 @@ initializePassport(passport, dbPlayer.getPlayerByLogin)
 
 router.get('/', checkAuthenticated, function(requestHTTP, responseHTTP, next){
 	console.log("HOME PAGE ")
+	responseHTTP.cookie('login', requestHTTP.user.login);
 	responseHTTP.render('home.ejs',{pseudo: requestHTTP.user.pseudo})
 })
 
@@ -50,18 +51,24 @@ router.post('/register',checkNotAuthenticated, async function(requestHTTP, respo
  	// traitement inscription 
  	console.log("Inscription ")
  	console.log(requestHTTP.body)
- 	try{
- 		//https://medium.com/@mridu.sh92/a-quick-guide-for-authentication-using-bcrypt-on-express-nodejs-1d8791bb418f
- 		// Recupère le hash du mot de passe (Fonction asynchrone)
- 		const hash = await bcrypt.hash(requestHTTP.body.password,10)
- 		console.log(requestHTTP.body.pseudo + requestHTTP.body.login + hash)
- 		dbPlayer.createPlayer(new player(requestHTTP.body.pseudo, requestHTTP.body.login, hash))
- 		console.log("Redirect to login page")
- 		responseHTTP.redirect('/login')
- 	}catch(error){
- 		console.log(error)
- 		console.log("Erreur lors de la création")
- 		responseHTTP.redirect('/register')
+ 	// Vérifie si le login n'est pas déjà pris.
+
+ 	if(dbPlayer.getPlayerByLogin(requestHTTP.body.login) === null){
+	 	try{
+	 		//https://medium.com/@mridu.sh92/a-quick-guide-for-authentication-using-bcrypt-on-express-nodejs-1d8791bb418f
+	 		// Recupère le hash du mot de passe (Fonction asynchrone)
+	 		const hash = await bcrypt.hash(requestHTTP.body.password,10)
+	 		console.log(requestHTTP.body.pseudo + requestHTTP.body.login + hash)
+	 		dbPlayer.createPlayer(new player(requestHTTP.body.pseudo, requestHTTP.body.login, hash))
+	 		console.log("Redirect to login page")
+	 		responseHTTP.redirect('/login')
+	 	}catch(error){
+	 		console.log(error)
+	 		console.log("Erreur lors de la création")
+	 		responseHTTP.redirect('/register')
+	 	}
+ 	}else{
+ 		responseHTTP.redirect('/register?error=Login_Already_Used')
  	}
 })
 
@@ -71,18 +78,22 @@ router.post('/login',checkNotAuthenticated,passport.authenticate('local', {
     failureFlash: true
 }));
 
-//Fonction de test 
-router.post('/find', function(requestHTTP, responseHTTP, next){
-	dbPlayer.getPlayerByLogin(requestHTTP.body.login);
-})
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
   }
-
-  res.redirect('/login')
+  if(req.cookies['login']){
+  	  res.redirect('/login')
+  }else{
+  	  res.redirect('/register')
+  }
 }
 
 function checkNotAuthenticated(req, res, next) {
