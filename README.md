@@ -30,6 +30,9 @@ npm install express-flash
 Installation de dotenv : (Permet de charger les variables d'environnement du fichier .env)
 npm install dotenv
 
+Installation de cookie-parser (Pour gérer les cookies, cf : https://www.geeksforgeeks.org/http-cookies-in-node-js/)
+npm install cookie-parser
+
 
 Lancer le serveur :
 node index.js
@@ -39,6 +42,6 @@ Explication serialize - deserialize :
 https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
 
 
-
 http://www.passportjs.org/docs/
 
+// Voir

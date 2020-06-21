@@ -15,6 +15,11 @@ class Player_service{
 			login: player.login, 
 			pseudo: player.pseudo, 
 			hashedPassword: player.hashedPassword
+			stock: {
+				scorejeu1: 0
+				scorejeu2: 0
+				scorejeu3: 0
+				scorejeu4: 0			}
 		}).write()
 	}
 	deletePlayer(login){
@@ -27,7 +32,6 @@ class Player_service{
 		let info = db.get('players')
 		  .find({ login: login })
 		  .value()
-		 console.log(info)
 		 let player = null;
 		 if(info){
 		 	player = new Player(info.pseudo, info.login, info.hashedPassword)
