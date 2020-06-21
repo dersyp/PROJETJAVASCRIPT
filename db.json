@@ -9,6 +9,11 @@
       "login": "mathieu",
       "pseudo": "mathieu",
       "hashedPassword": "$2b$10$/11SvN/aOFt7kIHK2vzE7euzbq8CNflPZZ.85gIM1hV5Y2yw0uFVu"
+    },
+    {
+      "login": "clem",
+      "pseudo": "clem",
+      "hashedPassword": "$2b$10$rz535CwhG4CZcJ5oiCW6WeAoXQhp65vaTmbh2VlAWyoaXmI/xhNoK"
     }
   ]
 }
