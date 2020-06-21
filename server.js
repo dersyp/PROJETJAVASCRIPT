@@ -18,7 +18,8 @@ const session = require('express-session')
 const dbPlayer = new player_service()
 const passport = require('passport')
 const cookieparser = require('cookie-parser')
-
+const scoreGame_service = require('./models/scoreGame_service.js')
+const dbScoreGame = new scoreGame_service()
 app.set('view-engine', 'ejs')
 //https://github.com/expressjs/body-parser#bodyparserurlencodedoptions
 app.use(express.urlencoded({ extended: false }))
@@ -47,6 +48,9 @@ router.get('/register',checkNotAuthenticated, function(requestHTTP, responseHTTP
 	responseHTTP.render('register.ejs')
 })
 
+router.get('/game1',checkAuthenticated, function(requestHTTP, responseHTTP, next){
+	responseHTTP.render('game1.ejs')
+})
 router.post('/register',checkNotAuthenticated, async function(requestHTTP, responseHTTP, next){
  	// traitement inscription 
  	console.log("Inscription ")
