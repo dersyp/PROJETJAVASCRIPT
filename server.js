@@ -47,7 +47,7 @@ router.post('/register', async function(requestHTTP, responseHTTP, next){
 
 router.post('/login',passport.authenticate('local', { 
 	successRedirect: '/',
-    failureRedirect: '/login'
+    failureRedirect: '/login',
     failureFlash: true
 }));
 
