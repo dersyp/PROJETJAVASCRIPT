@@ -14,7 +14,7 @@ body{
     position: relative;
     left : 30vw;
     top : 20vh;
-    background-color : white;
+    background-color : #3b3b3b;
     text-align: center;
     padding: 0 5vw;
 }
@@ -35,8 +35,8 @@ body{
     position: absolute;
     left: 0;
     top: 10px;
-    color: #999;
-    background-color: #fff;
+    color: #aaaaaa;
+    background-color: #3b3b3b;
     z-index: 10;
     -webkit-transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
     transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
@@ -55,8 +55,11 @@ body{
     padding: 12px 0px 7px 0;
     width: 100%;
     outline: 0;
+    font-size: 16px;
     border: 0;
-    box-shadow: 0 1px 0 0 #e5e5e5;
+    color : #aaaaaa;
+    background-color : #3b3b3b;
+    box-shadow: 0 1px 0 0 #ff8400;
     -webkit-transition: box-shadow 150ms ease-out;
     transition: box-shadow 150ms ease-out;
 }
@@ -72,7 +75,7 @@ body{
     text-transform: uppercase;
     font-weight: 700;
     font-size: 18px;
-    color: white;
+    color: #3b3b3b;
     background: linear-gradient(to right, #ffdd00 , #ff5d00 ,#ffdd00 );
     background-size: 300% 100%;
     border: none;
@@ -86,9 +89,12 @@ body{
 }
 
 .login .submit:hover,.register .submit:hover{
-cursor: pointer;
+    cursor: pointer;
     transition: all .4s ease-in-out;
     background-position: 100% 0;
+}
+.login p, .register p {
+   color : #aaaaaa ;
 }
 .login a, .register a {
     color: orange;
@@ -96,10 +102,76 @@ cursor: pointer;
    text-decoration: none;
 
 }
+.home nav{
+    position: absolute;
+    top: 0;
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    background: #3b3b3b;
+    justify-content: space-around;
+}
+.home nav a{
+    text-decoration: none;
+    margin-top: 15px;
+    font-weight: 400 ;
+    font-size: 20px;
+    color : white;
+    transition: .2s;
+    text-transform: uppercase;
+    transition: border .2s;
+}
+.home nav a:hover{
+
+    transition: border .2s;
+    border-bottom: 5px solid white;
+}
 .login h1, .register h1 {
     background: linear-gradient(to right, #ffdd00 0%, #ff5d00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 900;
-    margin: 30px 0;
+    margin: 30px 0 10px 0;
 }
+
+footer{
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color : white ;
+    background-color: #3b3b3b;
+    display: flex;
+    justify-content: center;
+}
+footer p{
+    padding: 0 20px;
+    background: linear-gradient(to right, #ffdd00 0%, #ff5d00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+footer img, footer a{
+    width: 50px;
+    align-self: center;
+}
+footer img:last-child{
+    width: 25px;
+}
+/*body.home {*/
+/*    background: linear-gradient(45deg, #ffbd00, #ff9a00, #ff6d00, #ff3400);*/
+/*    background-size: 400% 400%;*/
+/*    animation: gradient 15s ease infinite;*/
+/*}*/
+
+/*@keyframes gradient {*/
+/*    0% {*/
+/*        background-position: 0% 50%;*/
+/*    }*/
+/*    50% {*/
+/*        background-position: 100% 50%;*/
+/*    }*/
+/*    100% {*/
+/*        background-position: 0% 50%;*/
+/*    }*/
+/*}*/

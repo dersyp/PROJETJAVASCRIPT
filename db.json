@@ -10,6 +10,17 @@
         "scorejeu3": 0,
         "scorejeu4": 0
       }
+    },
+    {
+      "login": "null",
+      "pseudo": "null",
+      "hashedPassword": "$2b$10$U.0gXC1CAyf57dGYwtOdiOz3uSlS/qUIeJ0nrZ9FthxOTRFRkgmZq",
+      "scores": {
+        "scorejeu1": 0,
+        "scorejeu2": 0,
+        "scorejeu3": 0,
+        "scorejeu4": 0
+      }
     }
   ],
   "scoresGame": [
