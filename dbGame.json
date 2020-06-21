@@ -1,0 +1,11 @@
+{
+  "ScoresGame": [
+    {
+      "name": "game1",
+      "highScore": 11,
+      "rankings": {
+        "q": 11
+      }
+    }
+  ]
+}

@@ -18,8 +18,8 @@ const session = require('express-session')
 const dbPlayer = new player_service()
 const passport = require('passport')
 const cookieparser = require('cookie-parser')
-const scoreGame_service = require('./models/scoreGame_service.js')
-const dbScoreGame = new scoreGame_service()
+const Game_service = require('./models/game_service.js')
+const dbGame = new Game_service()
 app.set('view-engine', 'ejs')
 //https://github.com/expressjs/body-parser#bodyparserurlencodedoptions
 app.use(express.urlencoded({ extended: false }))
@@ -49,7 +49,7 @@ router.get('/register',checkNotAuthenticated, function(requestHTTP, responseHTTP
 })
 
 router.get('/game1',checkAuthenticated, function(requestHTTP, responseHTTP, next){
-	responseHTTP.render('game1.ejs', {scoresList: dbScoreGame.getScoreByname('game1')})
+	responseHTTP.render('game1.ejs', {scoresList: dbGame.getGameByname('game1')})
 })
 router.post('/register',checkNotAuthenticated, async function(requestHTTP, responseHTTP, next){
  	// traitement inscription 
@@ -79,6 +79,7 @@ router.post('/register',checkNotAuthenticated, async function(requestHTTP, respo
 router.post('/login',checkNotAuthenticated,passport.authenticate('local', { 
 	successRedirect: '/',
     failureRedirect: '/login',
+    badRequestMessage: 'Veuillez renseigner vos informations',
     failureFlash: true
 }));
 
@@ -91,7 +92,8 @@ router.get('/logout', function(requestHTTP, responseHTTP){
 
 router.post('/game1',checkAuthenticated,function(requestHTTP, responseHTTP){
 	console.log(requestHTTP.body.clicksNumber)
-	dbScoreGame.updateGame("game1",requestHTTP.body.clicksNumber)
+	dbGame.updateGameScore(requestHTTP.user.pseudo,"game1",requestHTTP.body.clicksNumber)
+	dbPlayer.updatePlayerScore(requestHTTP.user.login,"game1",requestHTTP.body.clicksNumber)
 });
 
 
