@@ -94,6 +94,7 @@ cursor: pointer;
     color: orange;
     font-weight: bold;
    text-decoration: none;
+
 }
 .login h1, .register h1 {
     background: linear-gradient(to right, #ffdd00 0%, #ff5d00 100%);
