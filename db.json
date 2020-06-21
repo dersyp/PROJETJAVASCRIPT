@@ -1,10 +1,10 @@
 {
   "players": [
     {
-      "login": "clem",
-      "pseudo": "clem",
-      "hashedPassword": "$2b$10$WaAzv9CaBV5o57SVpkWoo.KBK3JvRqp.KAhfmwqpoUZb2mfEqmpzS",
-      "stock": {
+      "login": "q",
+      "pseudo": "q",
+      "hashedPassword": "$2b$10$ggsFFDASooiZFE5/Ptujt.PA.GfeQP/.hqavdlWLL9wE8D0tYcngq",
+      "scores": {
         "scorejeu1": 0,
         "scorejeu2": 0,
         "scorejeu3": 0,

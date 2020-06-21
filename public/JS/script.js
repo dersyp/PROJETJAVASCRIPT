@@ -12,4 +12,10 @@ $( document ).ready(function() {
             $(this).addClass('filled');
         }
     })
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('error');
+    console.log(myParam)
+    if(myParam.localeCompare('Login_Already_Used') == 0){
+        $('#registerAlert').html("Login déjà utilisé");
+    }
 });

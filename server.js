@@ -53,7 +53,7 @@ router.post('/register',checkNotAuthenticated, async function(requestHTTP, respo
  	console.log(requestHTTP.body)
  	// Vérifie si le login n'est pas déjà pris.
 
- 	if(getPlayerByLogin(requestHTTP.body.login) === null){
+ 	if(dbPlayer.getPlayerByLogin(requestHTTP.body.login) === null){
 	 	try{
 	 		//https://medium.com/@mridu.sh92/a-quick-guide-for-authentication-using-bcrypt-on-express-nodejs-1d8791bb418f
 	 		// Recupère le hash du mot de passe (Fonction asynchrone)
@@ -68,7 +68,7 @@ router.post('/register',checkNotAuthenticated, async function(requestHTTP, respo
 	 		responseHTTP.redirect('/register')
 	 	}
  	}else{
- 		responseHTTT.redirect('/register',{errorMessage: 'Login déjà utilisé'})
+ 		responseHTTP.redirect('/register?error=Login_Already_Used')
  	}
 })
 

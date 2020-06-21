@@ -1,4 +1,4 @@
-class Scorejeu{
+class ScoreGame{
 	constructor(name, highScore, avgScore, worseScore){
 		this.name = name
 		this.highScore = highScore
@@ -7,4 +7,4 @@ class Scorejeu{
 	}
 
 }
-module.exports = Scorejeu;
+module.exports = ScoreGame;
