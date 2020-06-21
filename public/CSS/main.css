@@ -1,0 +1,102 @@
+* {
+     font-family: 'Montserrat', sans-serif;
+}
+body{
+    margin: 0;
+}
+.login{
+    background: linear-gradient(to right, #ffdd00 0%, #ff5d00 100%);
+}
+.login .form{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    position: relative;
+    left : 30vw;
+    top : 20vh;
+    background-color : white;
+    text-align: center;
+    padding: 0 5vw;
+}
+.login .form form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.form-group {
+    position: relative;
+}
+.form-group + .form-group {
+    margin-top: 30px;
+}
+
+.form-label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: #999;
+    background-color: #fff;
+    z-index: 10;
+    -webkit-transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+    transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+    transition: transform 150ms ease-out, font-size 150ms ease-out;
+    transition: transform 150ms ease-out, font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+}
+
+.focused .form-label {
+    -webkit-transform: translateY(-125%);
+    transform: translateY(-125%);
+    font-size: .75em;
+}
+
+.form-input {
+    position: relative;
+    padding: 12px 0px 7px 0;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    box-shadow: 0 1px 0 0 #e5e5e5;
+    -webkit-transition: box-shadow 150ms ease-out;
+    transition: box-shadow 150ms ease-out;
+}
+.form-input:focus {
+    box-shadow: 0 2px 0 0 #ff0000;
+}
+
+.form-input.filled {
+    box-shadow: 0 2px 0 0 #ffd600;
+}
+
+.login .submit{
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+    background: linear-gradient(to right, #ffdd00 , #ff5d00 ,#ffdd00 );
+    background-size: 300% 100%;
+    border: none;
+    border-radius: 20px;
+    width: 50%;
+    transition: background .4s ease-in-out;
+    padding: 10px;
+    margin: 40px auto 20px auto;
+    box-shadow:0px 0px 10px #ff8f3c;
+    outline: none;
+}
+
+.login .submit:hover{
+cursor: pointer;
+    transition: all .4s ease-in-out;
+    background-position: 100% 0;
+}
+.login a {
+    color: white;
+}
+.login h1, .register h1 {
+    background: linear-gradient(to right, #ffdd00 0%, #ff5d00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    margin: 30px 0;
+}
