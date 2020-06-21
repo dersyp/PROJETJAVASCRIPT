@@ -12,6 +12,12 @@
 	<link rel="stylesheet" href="/CSS/main.css">
 </head>
 <body class="register">
+
+
+	<% if(errorMessage) { %>
+		<%= errorMessage %>
+
+	<% } %>
 	<h1> Inscription </h1>
 	<form method="POST" action="/register">
 		<label> Pseudo </label>

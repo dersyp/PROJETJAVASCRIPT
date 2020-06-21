@@ -1,19 +1,15 @@
 {
   "players": [
     {
-      "login": "sdff",
-      "pseudo": "sdfs",
-      "hashedPassword": "$2b$10$MZcolYJdhJ/o.L/kh0PaNOoMHu3Wv632tkmmQQBf2S8tgTHKrZNk6"
-    },
-    {
-      "login": "mathieu",
-      "pseudo": "mathieu",
-      "hashedPassword": "$2b$10$/11SvN/aOFt7kIHK2vzE7euzbq8CNflPZZ.85gIM1hV5Y2yw0uFVu"
-    },
-    {
       "login": "clem",
       "pseudo": "clem",
-      "hashedPassword": "$2b$10$rz535CwhG4CZcJ5oiCW6WeAoXQhp65vaTmbh2VlAWyoaXmI/xhNoK"
+      "hashedPassword": "$2b$10$WaAzv9CaBV5o57SVpkWoo.KBK3JvRqp.KAhfmwqpoUZb2mfEqmpzS",
+      "stock": {
+        "scorejeu1": 0,
+        "scorejeu2": 0,
+        "scorejeu3": 0,
+        "scorejeu4": 0
+      }
     }
   ]
 }

@@ -14,12 +14,13 @@ class Player_service{
 		db.get('players').push({ 
 			login: player.login, 
 			pseudo: player.pseudo, 
-			hashedPassword: player.hashedPassword
-			stock: {
-				scorejeu1: 0
-				scorejeu2: 0
-				scorejeu3: 0
-				scorejeu4: 0			}
+			hashedPassword: player.hashedPassword,
+			scores: {
+				scorejeu1: 0,
+				scorejeu2: 0,
+				scorejeu3: 0,
+				scorejeu4: 0			
+			}
 		}).write()
 	}
 	deletePlayer(login){
