@@ -1,5 +1,5 @@
 * {
-     font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 body{
     margin: 0;
@@ -94,38 +94,67 @@ body{
     background-position: 100% 0;
 }
 .login p, .register p {
-   color : #aaaaaa ;
+    color : #aaaaaa ;
 }
 .login a, .register a {
     color: orange;
     font-weight: bold;
-   text-decoration: none;
+    text-decoration: none;
 
 }
-.home nav{
+nav{
     position: absolute;
     top: 0;
     height: 10vh;
     width: 100vw;
     display: flex;
     background: #3b3b3b;
-    justify-content: space-around;
+    justify-content: space-between;
 }
-.home nav a{
+nav a{
     text-decoration: none;
-    margin-top: 15px;
     font-weight: 400 ;
     font-size: 20px;
     color : white;
-    transition: .2s;
     text-transform: uppercase;
+    border : none;
     transition: border .2s;
-}
-.home nav a:hover{
 
-    transition: border .2s;
+}
+nav>a:hover{
+    transition: border .1s;
     border-bottom: 5px solid white;
 }
+nav>a:first-child{
+    margin-top: 3.5vh;
+    color : orange;
+    font-weight: bold;
+    margin-left: 50px;
+}
+nav>a:last-child{
+    margin-top: 3.5vh;
+    margin-right: 50px;
+}
+nav>div{
+    vertical-align: center;
+    align-content: center;
+    display: flex;
+    width: 30vw;
+    justify-content: center;
+}
+nav>div>a{
+    padding: 3.5vh 40px 0 40px;
+    background-color : #3b3b3b;
+    transition: background-color 1s;
+
+}
+nav>div>a:hover{
+    background: linear-gradient(45deg, #ffbd00, #ff9a00, #ff6d00, #ff3400);
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+    transition: background-color 1s;
+}
+
 .login h1, .register h1 {
     background: linear-gradient(to right, #ffdd00 0%, #ff5d00 100%);
     -webkit-background-clip: text;
@@ -164,14 +193,111 @@ footer img:last-child{
 /*    animation: gradient 15s ease infinite;*/
 /*}*/
 
-/*@keyframes gradient {*/
-/*    0% {*/
-/*        background-position: 0% 50%;*/
-/*    }*/
-/*    50% {*/
-/*        background-position: 100% 50%;*/
-/*    }*/
-/*    100% {*/
-/*        background-position: 0% 50%;*/
-/*    }*/
-/*}*/
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.game1{
+    background-color: #0e0e0e;
+}
+.game1>div{
+    margin-top: 15vh;
+    width: 100vw;
+}
+.game1 .game{
+    width: 70%;
+    text-align: center;
+    margin: auto;
+}
+.game1 .game h1{
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffdd00;
+    margin-bottom: 50px;
+}
+.game1 .game>div{
+    display: flex;
+    justify-content: space-between;
+}
+.clickArea{
+    background: linear-gradient(45deg, #ffbd00, #ff9a00, #ff6d00, #ff3400);
+    background-size: 400% 400%;
+    animation: gradient 2s ease infinite;
+    width: 30vw;
+    height : 30vw;
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    transform-origin: center;
+
+}
+.clickArea:hover{
+    cursor: pointer;
+}
+.game1 .infos{
+    text-align: left;
+    position: relative;
+    left: -20vh;
+}
+.game1 .infos p{
+    color : white;
+    font-size: 30px;
+
+}
+.game1 .game .clique{
+    color:#3b3b3b ;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 30px;
+    align-self: center;
+
+}
+
+.dot {
+    height: 2px;
+    width: 2px;
+    border-radius: 100%;
+    position: absolute;
+    z-index: 0;
+    animation: click 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background: transparent;
+}
+
+body.game1 .game .blop{
+    animation:gradient 2s ease infinite, blop 0.1s ease-out;
+}
+@keyframes blop {
+    0%{
+        width: 30vw;
+        height : 30vw;
+    }
+    50%{
+        width: 29vw;
+        height : 29vw;
+
+
+    }
+    100%{
+        width: 30vw;
+        height : 30vw;
+    }
+}
+@keyframes click {
+    0% {
+        box-shadow: 0 0 0 0px rgba(255, 30, 0, 0.7);
+        background: rgba(255, 215, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 200px rgba(255, 169, 0, 0);
+        background: rgba(255, 225, 0, 0);
+    }
+}
+

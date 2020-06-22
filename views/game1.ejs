@@ -11,11 +11,11 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/CSS/main.css">
 </head>
-<body class="home">
+<body class="home game1">
 <nav>
-	<a href="/home">Accueil</a>
+	<a href="/">Accueil</a>
 	<div>
-		<a href="/game1">jeu1</a>
+		<a href="/game1">Clicker</a>
 		<a href="/jeu2">jeu2</a>
 		<a href="/jeu3">jeu3</a>
 	</div>
@@ -23,20 +23,23 @@
 </nav>
 <div>
 
-	<div class="form">
-		<h1> Jeu 1 </h1>
-		<p> Tableau des scores </p>
-		<p> Meilleur score : <%= scoresList.highScore %> </p>
-		<p id="timer"></p>
-		<p id="scorePlayer"></p>
-		<div id="clickArea" style="background-color: red; width: 200px; height: 200px;"></div>
-		<p> Clique sur la zone pour commencer ! </p>
+	<div class="game">
+		<h1> Clicker </h1>
+		<div>
+			<div id="clickArea" class="clickArea"><p class="clique">Clique pour commencer !</p></div>
+			<div class="infos">
+				<p> Tableau des scores </p>
+				<p> Meilleur score : <%= scoresList.highScore %> </p>
+				<p id="timer"> </p>
+				<p id="scorePlayer"> </p>
+			</div>
+		</div>
 	</div>
-<footer>
-	<img src="/IMAGES/logo_nodejs.png" alt="Logo NodeJS">
-	<p> <b>Projet Express</b> - Clément Hyaumet - Mathieu Termet - © 2019-2020 </p>
-	<a href="https://github.com/dersyp/PROJETJAVASCRIPT" target="_blank">
-	<img src="/IMAGES/logo_github.png" alt="Logo Github" ></a>
-</footer>
+	<footer>
+		<img src="/IMAGES/logo_nodejs.png" alt="Logo NodeJS">
+		<p> <b>Projet Express</b> - Clément Hyaumet - Mathieu Termet - © 2019-2020 </p>
+		<a href="https://github.com/dersyp/PROJETJAVASCRIPT" target="_blank">
+			<img src="/IMAGES/logo_github.png" alt="Logo Github" ></a>
+	</footer>
 </body>
 </html>
