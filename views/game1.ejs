@@ -7,6 +7,10 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title> Inscrivez-vous </title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		var highScore = <%- scoresList.highScore %>;
+  		var bestPlayerScore = <%- bestPlayerScore %>;
+	</script>
 	<script src="/JS/game1.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/CSS/main.css">
@@ -29,13 +33,40 @@
 			<div id="clickArea" class="clickArea"><p class="clique">Clique pour commencer !</p></div>
 			<div class="infos">
 				<p> Tableau des scores </p>
-				<p> Meilleur score : <%= scoresList.highScore %> </p>
+				<p id="bestGameScore"> Meilleur score au jeu : <%= scoresList.highScore %> </p>
+				<p id="bestPlayerScore"> Mon meilleur score : <%= bestPlayerScore %> </p>
 				<p id="timer"> </p>
 				<p id="scorePlayer"> </p>
 			</div>
 		</div>
+		<h1> Classement </h1>
+		<div>
+			<table style="color: white;">
+				<tr>
+					<th> Pseudo </th>
+					<th> Score </th>
+				<tr>
+			<% Object.keys(scoresList.rankings).forEach(function(pseudo){%>
+				<tr>
+					<td><%= pseudo %></td>
+					<% if(playerPseudo == pseudo){ %>
+            			<td id="currentPlayer">
+            		<% }else{ %>
+            			<td>
+            		<% } %>
+            		<%= scoresList.rankings[pseudo] %></td>
+        		</tr>
+        	<%  }); %>
+        	<% if(Object.keys(scoresList.rankings).indexOf(playerPseudo) == -1){%>
+        		<tr>
+        			<td> <%= playerPseudo %> </td>
+        			<td id="currentPlayer"> 0 </td>
+        		</tr>
+        	<% } %>
+			</table>
+		</div>
 	</div>
-	<footer>
+	<footer style="position: initial">
 		<img src="/IMAGES/logo_nodejs.png" alt="Logo NodeJS">
 		<p> <b>Projet Express</b> - Clément Hyaumet - Mathieu Termet - © 2019-2020 </p>
 		<a href="https://github.com/dersyp/PROJETJAVASCRIPT" target="_blank">

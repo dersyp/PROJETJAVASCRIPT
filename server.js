@@ -48,9 +48,6 @@ router.get('/register',checkNotAuthenticated, function(requestHTTP, responseHTTP
 	responseHTTP.render('register.ejs')
 })
 
-router.get('/game1',checkAuthenticated, function(requestHTTP, responseHTTP, next){
-	responseHTTP.render('game1.ejs', {scoresList: dbGame.getGameByname('game1')})
-})
 router.post('/register',checkNotAuthenticated, async function(requestHTTP, responseHTTP, next){
  	// traitement inscription 
  	console.log("Inscription ")
@@ -96,13 +93,15 @@ router.get('/login/github/return',
   });
 
 
-
 router.get('/logout', function(requestHTTP, responseHTTP){
   requestHTTP.logout();
   responseHTTP.redirect('/');
 });
 
-
+router.get('/game1',checkAuthenticated, function(requestHTTP, responseHTTP, next){
+	console.log(requestHTTP.user)
+	responseHTTP.render('game1.ejs', {scoresList: dbGame.getGameByname('game1'), bestPlayerScore: requestHTTP.user.scores.game1, playerPseudo: requestHTTP.user.pseudo})
+})
 router.post('/game1',checkAuthenticated,function(requestHTTP, responseHTTP){
 	console.log(requestHTTP.body.clicksNumber)
 	dbGame.updateGameScore(requestHTTP.user.pseudo,"game1",requestHTTP.body.clicksNumber)

@@ -1,9 +1,12 @@
 $( document ).ready(function() {
   var countClick = 0;
   var gameState = false;
+  console.log(highScore)
+
   function startTimer() {
 
     let seconds = 0;
+    $('#timer').html("Temps : " + seconds + " secondes");
     let t = setInterval(timer, 1000);
      function timer(){
       seconds = seconds + 1;
@@ -15,7 +18,15 @@ $( document ).ready(function() {
           xhttp.open('POST', '/game1', true)
           xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
           let body = "clicksNumber="+countClick
-          console.log(body)
+          if(countClick > bestPlayerScore){
+            bestPlayerScore = countClick;
+            $("#bestPlayerScore").html("Mon meilleur score : "+bestPlayerScore)
+            $("#currentPlayer").html(bestPlayerScore)
+            if(countClick > highScore){
+              highScore = countClick
+              $("#bestGameScore").html("Meilleur score au jeu : "+highScore)
+            }
+          }
           xhttp.send(body);
          $('#scorePlayer').html("Score final : "+ countClick)
           gameState = false;
@@ -28,8 +39,8 @@ $( document ).ready(function() {
       $(".clique").hide();
     if(!gameState){
       startTimer();
-      $('#scorePlayer').html("");
-      countClick = 0;
+      countClick = 1;
+      $('#scorePlayer').html("Score : "+ countClick)
       gameState = true;
     }else{
       $('#scorePlayer').html("Score : "+ countClick)

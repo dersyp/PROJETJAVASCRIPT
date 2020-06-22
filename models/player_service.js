@@ -21,7 +21,8 @@ class Player_service{
 				game2: 0,
 				game3: 0,
 				game4: 0			
-			}
+			},
+			role: 'player'
 		}).write()
 	}
 	deletePlayer(login){
@@ -36,7 +37,7 @@ class Player_service{
 		  .value()
 		 let player = null;
 		 if(info){
-		 	player = new Player(info.pseudo, info.login, info.hashedPassword)
+		 	player = new Player(info.pseudo, info.login, info.hashedPassword, info.scores, info.role)
 		 }else{
 		 	console.log("Player pas existant")
 		 }

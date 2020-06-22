@@ -3,13 +3,50 @@
     {
       "login": "q",
       "pseudo": "q",
-      "hashedPassword": "$2b$10$9ONFFTtIwgcT0GpMHN/GA.qlqG9uZ9sI9/IvEtirs95Eqnn9lvRju",
+      "hashedPassword": "$2b$10$jjfdMLF2cDqupBV5hAejPO5kUAEXsFUq0IrgONH78zw/ejyXxk0HW",
       "scores": {
-        "game1": 36,
+        "game1": 28,
         "game2": 0,
         "game3": 0,
         "game4": 0
-      }
+      },
+      "role": "player"
+    },
+    {
+      "login": "a",
+      "pseudo": "a",
+      "hashedPassword": "$2b$10$WNgQzfekQfdznhx/duoiru/SLb3jaxEx8LDIokjyE0u/IjVkTRZ56",
+      "scores": {
+        "game1": 6,
+        "game2": 0,
+        "game3": 0,
+        "game4": 0
+      },
+      "role": "player"
+    },
+    {
+      "login": "b",
+      "pseudo": "b",
+      "hashedPassword": "$2b$10$xKE3i.jrv/pbE2oHgzPyKO2RBJI89HTOzSpe44StZrc/VvdI9yE0.",
+      "scores": {
+        "game1": 0,
+        "game2": 0,
+        "game3": 0,
+        "game4": 0
+      },
+      "role": "player"
+    },
+    {
+      "login": "c",
+      "pseudo": "c",
+      "hashedPassword": "$2b$10$phDUQTWYP5tk4lBYExflvuwaAN/DHkX/5l7E4C9Ww7Tvzs6CuFGXC",
+      "scores": {
+        "game1": 7,
+        "game2": 0,
+        "game3": 0,
+        "game4": 0
+      },
+      "role": "player"
     }
   ]
 }
