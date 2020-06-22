@@ -26,8 +26,10 @@ class Player_service{
 		}).write()
 	}
 	deletePlayer(login){
+		let info = dbPlayer.get('players')
+		  .remove({ login: login })
+		  .write()
 		console.log("[deletePlayer]")
-
 	}
 
 	getPlayerByLogin(login){
@@ -68,10 +70,29 @@ class Player_service{
 	}
 
 
-	findOrCreate(githubId){
+	gitHubfindOrCreate(githubId,pseudo){
 		let info = dbPlayer.get('players')
-		  .find({ githubId: githubId })
+		  .find({ login: githubId })
 		  .value()
+		 let player = null;
+		 if(info){
+		 	player = new Player(info.pseudo, info.login, info.hashedPassword, info.scores, info.role)
+		 }else{
+		 	player = new Player(pseudo, githubId, githubId, null, null);
+		 	dbPlayer.get('players').push({ 
+			login: player.login, 
+			pseudo: player.pseudo, 
+			hashedPassword: player.hashedPassword,
+			scores: {
+				game1: 0,
+				game2: 0,
+				game3: 0,
+				game4: 0			
+			},
+			role: 'player'
+			}).write()
+		 }
+		 return player
 	}
 
 }
