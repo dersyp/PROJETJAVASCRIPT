@@ -1,4 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy
+var GitHubStrategy = require('passport-github').Strategy;
 const bcrypt = require('bcrypt')
 
 function initialize(passport, getPlayerByLogin){
@@ -25,12 +26,21 @@ function initialize(passport, getPlayerByLogin){
 
 	passport.use(new LocalStrategy({usernameField: 'login'},authentificatePlayer))
 
-
+	passport.use(new GitHubStrategy({
+    clientID: '356367cf9e51be1ba1b0',
+    clientSecret: 'c7d4a50f627839695d9e99aeb69b91d69128c3a2',
+    callbackURL: "http://localhost:3000/login/github/return"
+	  },
+	  function(accessToken, refreshToken, profile, cb) {
+	    player.findOrCreate({ githubId: profile.id }, function (err, user) {
+	      return cb(err, user);
+	    });
+	  }
+	));
 	passport.serializeUser((player,done) => done(null, player.login))
 	passport.deserializeUser((login, done) => {
 		return done(null, getPlayerByLogin(login))
 	})
 }
-
 
 module.exports = initialize

@@ -26,6 +26,7 @@
     "express-session": "^1.17.1",
     "lowdb": "^1.0.0",
     "passport": "^0.4.1",
+    "passport-github": "^1.1.0",
     "passport-local": "^1.0.0"
   }
 }

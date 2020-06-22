@@ -33,6 +33,9 @@ npm install dotenv
 Installation de cookie-parser (Pour gérer les cookies, cf : https://www.geeksforgeeks.org/http-cookies-in-node-js/)
 npm install cookie-parser
 
+Installation de passport-github (http://www.passportjs.org/packages/passport-github/) : pour le oAuth
+npm install passport-github
+
 
 Lancer le serveur :
 node index.js

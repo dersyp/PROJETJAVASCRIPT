@@ -84,6 +84,19 @@ router.post('/login',checkNotAuthenticated,passport.authenticate('local', {
 }));
 
 
+router.get('/login/github',
+  passport.authenticate('github'));
+
+
+router.get('/login/github/return', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(requestHTTP, responseHTTP) {
+    // Successful authentication, redirect home.
+    responseHTTP.redirect('/');
+  });
+
+
+
 router.get('/logout', function(requestHTTP, responseHTTP){
   requestHTTP.logout();
   responseHTTP.redirect('/');

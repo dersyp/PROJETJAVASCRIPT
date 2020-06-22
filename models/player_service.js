@@ -66,6 +66,13 @@ class Player_service{
 		}
 	}
 
+
+	findOrCreate(githubId){
+		let info = dbPlayer.get('players')
+		  .find({ githubId: githubId })
+		  .value()
+	}
+
 }
 
 module.exports = Player_service;
