@@ -204,25 +204,25 @@ footer img:last-child{
         background-position: 0% 50%;
     }
 }
-.game1{
+.clicker{
     background-color: #0e0e0e;
 }
-.game1>div{
+.clicker>div{
     margin-top: 15vh;
     width: 100vw;
 }
-.game1 .game{
+.clicker .game{
     width: 70%;
     text-align: center;
     margin: auto;
 }
-.game1 .game h1{
+.clicker .game h1{
     font-weight: bold;
     text-transform: uppercase;
     color: #ffdd00;
     margin-bottom: 50px;
 }
-.game1 .game>div{
+.clicker .game>div{
     display: flex;
     justify-content: space-between;
 
@@ -243,17 +243,17 @@ footer img:last-child{
 .clickArea:hover{
     cursor: pointer;
 }
-.game1 .infos{
+.clicker .infos{
     text-align: left;
     position: relative;
     left: -20vh;
 }
-.game1 .infos p{
+.clicker .infos p{
     color : white;
     font-size: 30px;
 
 }
-.game1 .game .clique{
+.clicker .game .clique{
     color:#3b3b3b ;
     text-transform: uppercase;
     font-weight: bold;
@@ -272,11 +272,11 @@ footer img:last-child{
     background: transparent;
 }
 
-body.game1 .game .blop{
+body.clicker .game .blop{
     animation:gradient 2s ease infinite, blop 0.1s ease-out;
 }
 
-.game1 .classement table{
+.clicker .classement table{
     margin: auto;
     margin-bottom: 50px;
     width: 30vw;

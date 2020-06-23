@@ -17,7 +17,7 @@ $( document ).ready(function() {
          clearInterval(t)
           if(countClick > bestPlayerScore){
             var xhttp = new XMLHttpRequest();
-            xhttp.open('POST', '/game1', true)
+            xhttp.open('POST', '/clicker', true)
             xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             let body = "clicksNumber="+countClick
             xhttp.send(body);

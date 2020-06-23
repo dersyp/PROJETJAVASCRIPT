@@ -60,7 +60,7 @@ $( document ).ready(function() {
     function updateScore(reactionTime){
       if((reactionTime < bestPlayerScore) || bestPlayerScore == 0){
          var xhttp = new XMLHttpRequest();
-        xhttp.open('POST', '/game2', true)
+        xhttp.open('POST', '/reaction', true)
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         let body = "reactionTime="+reactionTime
          xhttp.send(body);

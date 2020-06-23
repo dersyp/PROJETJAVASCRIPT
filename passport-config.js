@@ -34,14 +34,14 @@ function initialize(passport, getPlayerByLogin, gitHubfindOrCreate){
     clientID: '356367cf9e51be1ba1b0',
     clientSecret: 'c7d4a50f627839695d9e99aeb69b91d69128c3a2',
     callbackURL: "http://localhost:3000/login/github/return"
-	  },
-	  function(accessToken, refreshToken, profile, done) {
+	  },function(accessToken, refreshToken, profile, done) {
 	  	//https://www.it-swarm.dev/fr/node.js/que-fait-la-fonction-user.findorcreate-et-quand-est-elle-appelee-dans-le-passeport/1042514405/
 	  	console.log(profile)
 	    let player = gitHubfindOrCreate(profile.id, profile.username);
 	    return done(null, player);
 	  }
 	));
+
 	passport.serializeUser((player,done) => done(null, player.login))
 	passport.deserializeUser((login, done) => {
 		return done(null, getPlayerByLogin(login))

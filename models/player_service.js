@@ -22,7 +22,9 @@ class Player_service{
 			login: player.login, 
 			pseudo: player.pseudo, 
 			hashedPassword: player.hashedPassword,
-			scores: {		
+			scores: {
+				clicker: 0,
+				reaction: 0		
 			},
 			role: 'player'
 		}).write()
@@ -76,7 +78,7 @@ class Player_service{
 		//Récupère les scores associé au joueur
 		let scoresGames = this.getScore(login,gameName);
 		// Modifie le meilleur score du joueur si celui-ci est dépassé (Prend en compte le nom du jeu)
-		if((scoreInt > scoresGames[gameName] && gameName == "game1") || (scoreInt < scoresGames[gameName] && gameName == "game2")) {
+		if((scoreInt > scoresGames[gameName] && gameName == "clicker") || ((scoresGames[gameName] == 0 || scoreInt < scoresGames[gameName]) && gameName == "reaction")) {
 			//Vérifie si le joueur possède un score pour ce jeu
 			if(scoresGames[gameName]) {
 				scoresGames[gameName]= scoreInt;
@@ -106,10 +108,8 @@ class Player_service{
 			pseudo: player.pseudo, 
 			hashedPassword: player.hashedPassword,
 			scores: {
-				game1: 0,
-				game2: 0,
-				game3: 0,
-				game4: 0			
+				clicker: 0,
+				reaction: 0		
 			},
 			role: 'player'
 			}).write()

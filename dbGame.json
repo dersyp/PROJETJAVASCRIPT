@@ -25,14 +25,33 @@
       "name": "game2",
       "highScore": 0,
       "rankings": {
-        "q": 379
+        "q": 379,
+        "b": 410,
+        "m": 420
       }
     },
     {
       "name": "game1",
       "highScore": 39,
       "rankings": {
-        "a": 39
+        "a": 39,
+        "b": 7
+      }
+    },
+    {
+      "name": "reaction",
+      "highScore": 0,
+      "rankings": {
+        "l": 429,
+        "o": 1456
+      }
+    },
+    {
+      "name": "clicker",
+      "highScore": 6,
+      "rankings": {
+        "l": 4,
+        "o": 6
       }
     }
   ]

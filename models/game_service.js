@@ -55,7 +55,7 @@ class Game_service{
 		let scoreInt = parseInt(score, 10);
 		//Sctructure condionnelle qui permet de vérifier si le joueur à un score stocké dans la base de données et si oui si le score réalisé est  meilleur
 		//Ici la condition prend en compte le nom du jeu car selon le jeu meilleure valeur peut-être la plus grand ou la plus petite
-		if(((!currentGame.rankings[pseudo] || scoreInt > currentGame.rankings[pseudo]) && name == "game1") || ((!currentGame.rankings[pseudo] || scoreInt < currentGame.rankings[pseudo]) && name == "game2")){
+		if(((!currentGame.rankings[pseudo] || scoreInt > currentGame.rankings[pseudo]) && name == "clicker") || ((!currentGame.rankings[pseudo] || scoreInt < currentGame.rankings[pseudo]) && name == "reaction")){
 			if(currentGame.rankings[pseudo]){
 				// Si le joueur à deja un score stocké pour ce jeu on actualise la valeur afin de garder seulement son meilleur score
 				currentGame.rankings[pseudo] = scoreInt
@@ -67,7 +67,7 @@ class Game_service{
 			//Met à jour le tableau du score des différents joueurs pour le jeu dans la base de données
 			dbGame.get('Games').find({ name: name }).assign({ rankings: currentGame.rankings}).write();
 			//Si le record pour le jeu est battu
-			if((scoreInt > currentGame.highScore && name == "game1") || (scoreInt < currentGame.highScore && name == "game2")){
+			if((scoreInt > currentGame.highScore && name == "clicker") || (scoreInt < currentGame.highScore && name == "reaction")){
 				//On actualise la base de données avec le record pour le jeu
 				dbGame.get('Games').find({ name: name}).assign({ highScore: scoreInt}).write();
 			}

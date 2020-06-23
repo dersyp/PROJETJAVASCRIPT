@@ -22,6 +22,7 @@ const dbGame = new Game_service()
 //Importe et instancie le modèle pour gérer les joueur au sein de l'application
 const player_service = require('./models/player_service.js')
 const dbPlayer = new player_service()
+const player = require('./models/player.js');
 
 //Renseigne le moteur de template utilisé, EJS
 app.set('view engine', 'ejs')
@@ -63,8 +64,8 @@ router.post('/register',checkNotAuthenticated, async function(requestHTTP, respo
 	 		//https://medium.com/@mridu.sh92/a-quick-guide-for-authentication-using-bcrypt-on-express-nodejs-1d8791bb418f
 	 		// Recupère le hash du mot de passe (Fonction asynchrone)
 	 		const hash = await bcrypt.hash(requestHTTP.body.password,10)
-	 		console.log(requestHTTP.body.pseudo + requestHTTP.body.login + hash)
-	 		dbPlayer.createPlayer(new player(requestHTTP.body.pseudo, requestHTTP.body.login, hash))
+	 		console.log("ALLOOOOO")
+	 		dbPlayer.createPlayer(new player(requestHTTP.body.pseudo, requestHTTP.body.login, hash,{},'player'))
 	 		console.log("Redirect to login page")
 	 		responseHTTP.redirect('/login')
 	 	}catch(error){
@@ -106,23 +107,23 @@ router.get('/logout', function(requestHTTP, responseHTTP){
   responseHTTP.redirect('/');
 });
 
-router.get('/game1',checkAuthenticated, function(requestHTTP, responseHTTP, next){
+router.get('/clicker',checkAuthenticated, function(requestHTTP, responseHTTP, next){
 	console.log(requestHTTP.user)
-	responseHTTP.render('game1.ejs', {scoresList: dbGame.getGameOrCreateByname('game1'), bestPlayerScore: requestHTTP.user.scores.game1, playerPseudo: requestHTTP.user.pseudo})
+	responseHTTP.render('clicker.ejs', {scoresList: dbGame.getGameOrCreateByname('clicker'), bestPlayerScore: requestHTTP.user.scores.clicker, playerPseudo: requestHTTP.user.pseudo})
 })
-router.post('/game1',checkAuthenticated,function(requestHTTP, responseHTTP){
+router.post('/clicker',checkAuthenticated,function(requestHTTP, responseHTTP){
 	console.log(requestHTTP.body.clicksNumber)
-	dbGame.updateGameScore(requestHTTP.user.pseudo,"game1",requestHTTP.body.clicksNumber)
-	dbPlayer.updatePlayerScore(requestHTTP.user.login,"game1",requestHTTP.body.clicksNumber)
+	dbGame.updateGameScore(requestHTTP.user.pseudo,"clicker",requestHTTP.body.clicksNumber)
+	dbPlayer.updatePlayerScore(requestHTTP.user.login,"clicker",requestHTTP.body.clicksNumber)
 });
-router.get('/game2',checkAuthenticated, function(requestHTTP, responseHTTP, next){
+router.get('/reaction',checkAuthenticated, function(requestHTTP, responseHTTP, next){
 	console.log(requestHTTP.user)
-	responseHTTP.render('game2.ejs', {scoresList: dbGame.getGameOrCreateByname('game2'), bestPlayerScore: requestHTTP.user.scores.game2, playerPseudo: requestHTTP.user.pseudo})
+	responseHTTP.render('reaction.ejs', {scoresList: dbGame.getGameOrCreateByname('reaction'), bestPlayerScore: requestHTTP.user.scores.reaction, playerPseudo: requestHTTP.user.pseudo})
 })
-router.post('/game2',checkAuthenticated,function(requestHTTP, responseHTTP){
+router.post('/reaction',checkAuthenticated,function(requestHTTP, responseHTTP){
 	console.log(requestHTTP.body.reactionTime)
-	dbGame.updateGameScore(requestHTTP.user.pseudo,"game2",requestHTTP.body.reactionTime)
-	dbPlayer.updatePlayerScore(requestHTTP.user.login,"game2",requestHTTP.body.reactionTime)
+	dbGame.updateGameScore(requestHTTP.user.pseudo,"reaction",requestHTTP.body.reactionTime)
+	dbPlayer.updatePlayerScore(requestHTTP.user.login,"reaction",requestHTTP.body.reactionTime)
 });
 
 router.get('/admin', checkAuthenticated, isAdmin, function(requestHTTP, responseHTTP){
