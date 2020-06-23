@@ -2,12 +2,19 @@
   "ScoresGame": [
     {
       "name": "game1",
-      "highScore": 30,
+      "highScore": 28,
       "rankings": {
-        "q": 30,
+        "34368902": 21,
+        "q": 28,
         "a": 6,
-        "c": 7
+        "c": 7,
+        "dersyp": 27
       }
+    },
+    {
+      "name": "game2",
+      "highScore": 0,
+      "rankings": {}
     }
   ]
 }

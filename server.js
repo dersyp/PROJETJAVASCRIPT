@@ -5,6 +5,7 @@
 	TO DO : 
 	- Rajouter le port et d'autres variables dans le fichier .env
 	-http://www.passportjs.org/packages/passport-github/
+	- Pour le ban je supprime le mec ou alors je fais un état banni ??
 
 */ 
 const express = require('express')
@@ -33,7 +34,7 @@ app.use(cookieparser())
 app.use(passport.initialize())
 app.use(passport.session())
 const initializePassport = require('./passport-config.js');
-initializePassport(passport, dbPlayer.getPlayerByLogin)
+initializePassport(passport, dbPlayer.getPlayerByLogin, dbPlayer.gitHubfindOrCreate)
 
 router.get('/', checkAuthenticated, function(requestHTTP, responseHTTP, next){
 	console.log("HOME PAGE ")
@@ -71,6 +72,10 @@ router.post('/register',checkNotAuthenticated, async function(requestHTTP, respo
  	}else{
  		responseHTTP.redirect('/register?error=Login_Already_Used')
  	}
+
+ 	/* 
+ 	RAJOUTER CE Q4UIL FAUT POUR RENDRE LE PSEUDO UNIQUE
+ 	*/
 })
 
 router.post('/login',checkNotAuthenticated,passport.authenticate('local', { 
@@ -107,7 +112,21 @@ router.post('/game1',checkAuthenticated,function(requestHTTP, responseHTTP){
 	dbGame.updateGameScore(requestHTTP.user.pseudo,"game1",requestHTTP.body.clicksNumber)
 	dbPlayer.updatePlayerScore(requestHTTP.user.login,"game1",requestHTTP.body.clicksNumber)
 });
+router.get('/game2',checkAuthenticated, function(requestHTTP, responseHTTP, next){
+	console.log(requestHTTP.user)
+	responseHTTP.render('game2.ejs', {scoresList: dbGame.getGameByname('game2'), bestPlayerScore: requestHTTP.user.scores.game2, playerPseudo: requestHTTP.user.pseudo})
+})
 
+
+router.get('/admin', checkAuthenticated, isAdmin, function(requestHTTP, responseHTTP){
+	console.log(dbPlayer.readPlayers())
+  	responseHTTP.render('admin.ejs', {playersList: dbPlayer.readPlayers()})
+});
+
+router.get('/admin/ban/:login', checkAuthenticated, isAdmin, function(requestHTTP, responseHTTP){
+	dbPlayer.deletePlayer(requestHTTP.params.login)
+	responseHTTP.redirect('/admin')
+});
 
 function checkAuthenticated(requestHTTP, responseHTTP, next) {
   if (requestHTTP.isAuthenticated()) {
@@ -127,6 +146,12 @@ function checkNotAuthenticated(requestHTTP, responseHTTP, next) {
   next()
 }
 
+function isAdmin(requestHTTP, responseHTTP, next){
+	if(requestHTTP.user.role != "admin"){
+		return responseHTTP.redirect('/')
+	}
+	next()
+}
 app.use('/',router)
 app.use(express.static(__dirname + '/public'))
 

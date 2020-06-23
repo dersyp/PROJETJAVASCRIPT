@@ -11,7 +11,7 @@
 		var highScore = <%- scoresList.highScore %>;
   		var bestPlayerScore = <%- bestPlayerScore %>;
 	</script>
-	<script src="/JS/game1.js"></script>
+	<script src="/JS/game2.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;700;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/CSS/main.css">
 </head>
@@ -20,7 +20,7 @@
 	<a href="/">Accueil</a>
 	<div>
 		<a href="/game1">Clicker</a>
-		<a href="/game2">jeu2</a>
+		<a href="/game2"> Reaction</a>
 		<a href="/game3">jeu3</a>
 	</div>
 	<a href="/logout">Déconnexion</a>
@@ -28,15 +28,14 @@
 <div>
 
 	<div class="game">
-		<h1> Clicker </h1>
+		<h1> Reaction  </h1>
 		<div>
 			<div id="clickArea" class="clickArea"><p class="clique">Clique pour commencer !</p></div>
 			<div class="infos">
 				<p> Tableau des scores </p>
 				<p id="bestGameScore"> Meilleur score au jeu : <%= scoresList.highScore %> </p>
 				<p id="bestPlayerScore"> Mon meilleur score : <%= bestPlayerScore %> </p>
-				<p id="timer"> </p>
-				<p id="scorePlayer"> </p>
+				<p id="result"> </p>
 			</div>
 		</div>
 		<h1> Classement </h1>

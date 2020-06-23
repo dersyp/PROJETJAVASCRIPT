@@ -1,7 +1,6 @@
 $( document ).ready(function() {
   var countClick = 0;
   var gameState = false;
-  console.log(highScore)
 
   function startTimer() {
 
