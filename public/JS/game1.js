@@ -12,7 +12,9 @@ $( document ).ready(function() {
       seconds = seconds + 1;
        $('#timer').html("Temps : " + seconds + " secondes");
        if(seconds >= 5){
+           $('.clique').html('Clique pour rejouer !');
            $(".clique").show();
+           $("#clickArea").off('click');
          clearInterval(t)
           var xhttp = new XMLHttpRequest();
           xhttp.open('POST', '/game1', true)
@@ -30,27 +32,26 @@ $( document ).ready(function() {
           xhttp.send(body);
          $('#scorePlayer').html("Score final : "+ countClick)
           gameState = false;
+           setTimeout(function () {
+               $('#clickArea').on('click', clicker);
+           }, 2000);
+
        }
     }
    }
 
-
-  $("#clickArea").click(function(){
-      $(".clique").hide();
-    if(!gameState){
-      startTimer();
-      countClick = 1;
-      $('#scorePlayer').html("Score : "+ countClick)
-      gameState = true;
-    }else{
-      $('#scorePlayer').html("Score : "+ countClick)
-      countClick++;
-      console.log(countClick);
-    }
-  });
-
-    $('#clickArea').on('click', function (e) {
-
+    function clicker(e){
+        $(".clique").hide();
+        if(!gameState){
+            startTimer();
+            countClick = 1;
+            $('#scorePlayer').html("Score : "+ countClick)
+            gameState = true;
+        }else{
+            $('#scorePlayer').html("Score : "+ countClick)
+            countClick++;
+            console.log(countClick);
+        }
         var left = e.pageX;
         var top = e.pageY;
         $('#clickArea').addClass('blop');
@@ -61,7 +62,9 @@ $( document ).ready(function() {
         setTimeout(function () {
             $('#clickArea .dot:first-of-type').remove();
         }, 3000);
-    });
+    }
+    $('#clickArea').on('click', clicker);
+
 
 
 });

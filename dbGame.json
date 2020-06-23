@@ -2,9 +2,9 @@
   "ScoresGame": [
     {
       "name": "game1",
-      "highScore": 28,
+      "highScore": 30,
       "rankings": {
-        "q": 28,
+        "q": 30,
         "a": 6,
         "c": 7
       }
