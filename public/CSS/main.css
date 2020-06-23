@@ -313,3 +313,15 @@ body.clicker .game .blop{
     margin-top: 100px;
     text-align: center;
 }
+.admin table{
+    margin: auto;
+
+}
+.admin table a{
+    text-decoration: none;
+    font-weight: bold;
+    color : orangered;
+}
+.admin table{
+    font-size: 20px;
+}
