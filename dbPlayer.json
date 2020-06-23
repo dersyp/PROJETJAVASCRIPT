@@ -23,6 +23,18 @@
         "game4": 0
       },
       "role": "player"
+    },
+    {
+      "login": "37398936",
+      "pseudo": "clementhyaumet",
+      "hashedPassword": "37398936",
+      "scores": {
+        "game1": 30,
+        "game2": 0,
+        "game3": 0,
+        "game4": 0
+      },
+      "role": "player"
     }
   ]
 }

@@ -5,7 +5,7 @@
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title> Inscrivez-vous </title>
+	<title> Clicker </title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 		var highScore = <%- scoresList.highScore %>;
@@ -20,7 +20,7 @@
 	<a href="/">Accueil</a>
 	<div>
 		<a href="/game1">Clicker</a>
-		<a href="/game2">jeu2</a>
+		<a href="/game2">Reaction</a>
 		<a href="/game3">jeu3</a>
 	</div>
 	<a href="/logout">Déconnexion</a>
@@ -32,7 +32,6 @@
 		<div>
 			<div id="clickArea" class="clickArea"><p class="clique">Clique pour commencer !</p></div>
 			<div class="infos">
-				<p> Tableau des scores </p>
 				<p id="bestGameScore"> Meilleur score au jeu : <%= scoresList.highScore %> </p>
 				<p id="bestPlayerScore"> Mon meilleur score : <%= bestPlayerScore %> </p>
 				<p id="timer"> </p>
@@ -40,7 +39,7 @@
 			</div>
 		</div>
 		<h1> Classement </h1>
-		<div>
+		<div class="classement">
 			<table style="color: white;">
 				<tr>
 					<th> Pseudo </th>

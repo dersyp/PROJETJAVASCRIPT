@@ -225,6 +225,7 @@ footer img:last-child{
 .game1 .game>div{
     display: flex;
     justify-content: space-between;
+
 }
 .clickArea{
     background: linear-gradient(45deg, #ffbd00, #ff9a00, #ff6d00, #ff3400);
@@ -238,6 +239,7 @@ footer img:last-child{
     transform-origin: center;
 
 }
+
 .clickArea:hover{
     cursor: pointer;
 }
@@ -273,20 +275,27 @@ footer img:last-child{
 body.game1 .game .blop{
     animation:gradient 2s ease infinite, blop 0.1s ease-out;
 }
+
+.game1 .classement table{
+    margin: auto;
+    margin-bottom: 50px;
+    width: 30vw;
+
+}
+
+
 @keyframes blop {
     0%{
+        height: 30vw;
         width: 30vw;
-        height : 30vw;
     }
     50%{
-        width: 29vw;
-        height : 29vw;
-
-
+        height: 29.5vw;
+        width:29.5vw;
     }
     100%{
+        height: 30vw;
         width: 30vw;
-        height : 30vw;
     }
 }
 @keyframes click {
