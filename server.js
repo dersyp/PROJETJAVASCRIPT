@@ -72,6 +72,10 @@ router.post('/register',checkNotAuthenticated, async function(requestHTTP, respo
  	}else{
  		responseHTTP.redirect('/register?error=Login_Already_Used')
  	}
+
+ 	/* 
+ 	RAJOUTER CE Q4UIL FAUT POUR RENDRE LE PSEUDO UNIQUE
+ 	*/
 })
 
 router.post('/login',checkNotAuthenticated,passport.authenticate('local', { 
@@ -108,6 +112,10 @@ router.post('/game1',checkAuthenticated,function(requestHTTP, responseHTTP){
 	dbGame.updateGameScore(requestHTTP.user.pseudo,"game1",requestHTTP.body.clicksNumber)
 	dbPlayer.updatePlayerScore(requestHTTP.user.login,"game1",requestHTTP.body.clicksNumber)
 });
+router.get('/game2',checkAuthenticated, function(requestHTTP, responseHTTP, next){
+	console.log(requestHTTP.user)
+	responseHTTP.render('game2.ejs', {scoresList: dbGame.getGameByname('game2'), bestPlayerScore: requestHTTP.user.scores.game2, playerPseudo: requestHTTP.user.pseudo})
+})
 
 
 router.get('/admin', checkAuthenticated, isAdmin, function(requestHTTP, responseHTTP){

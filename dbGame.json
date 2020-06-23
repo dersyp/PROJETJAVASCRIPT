@@ -10,6 +10,11 @@
         "c": 7,
         "dersyp": 27
       }
+    },
+    {
+      "name": "game2",
+      "highScore": 0,
+      "rankings": {}
     }
   ]
 }
