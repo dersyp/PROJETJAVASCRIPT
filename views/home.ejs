@@ -19,14 +19,29 @@
 	<a href="/">Accueil</a>
 	<div>
 		<a href="/game1">Clicker</a>
-		<a href="/game2">jeu 2</a>
-		<a href="/game3">jeu 3</a>
+		<a href="/game2">Reaction</a>
+		<a href="/game3">jeu3</a>
 		<a href="/admin"> Admin </a>
 	</div>
 	<a href="/logout">Déconnexion</a>
 </nav>
-<div>
-
+<div class="home">
+	<h1>Bienvenue <span style="color: #ffdd00;"><%= pseudo %></span></h1>
+	<h1> Mes scores </h1>
+	<div>
+		<table style="margin: auto; font-size: 24px;">
+			<tr>
+				<th> Nom du jeu </th>
+				<th> Score </th>
+			</tr>
+			<% Object.keys(playerScores).forEach(function(score){ %>
+			<tr>
+			<td> <%= score %></td>
+			<td> <%= playerScores[score] %> </td>
+			</tr>
+		<% }); %>
+		</table>
+	</div>
 </div>
 
 <footer>

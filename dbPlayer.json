@@ -6,7 +6,7 @@
       "hashedPassword": "$2b$10$jjfdMLF2cDqupBV5hAejPO5kUAEXsFUq0IrgONH78zw/ejyXxk0HW",
       "scores": {
         "game1": 40,
-        "game2": 896,
+        "game2": 379,
         "game3": 0,
         "game4": 0
       },
@@ -17,19 +17,7 @@
       "pseudo": "a",
       "hashedPassword": "$2b$10$WNgQzfekQfdznhx/duoiru/SLb3jaxEx8LDIokjyE0u/IjVkTRZ56",
       "scores": {
-        "game1": 6,
-        "game2": 0,
-        "game3": 0,
-        "game4": 0
-      },
-      "role": "player"
-    },
-    {
-      "login": "34368902",
-      "pseudo": "dersyp",
-      "hashedPassword": "34368902",
-      "scores": {
-        "game1": 23,
+        "game1": 39,
         "game2": 0,
         "game3": 0,
         "game4": 0

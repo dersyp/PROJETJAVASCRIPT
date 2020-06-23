@@ -1,22 +1,26 @@
+//Importe le module pour la connexion locale
 const LocalStrategy = require('passport-local').Strategy
-var GitHubStrategy = require('passport-github').Strategy;
+//Importe le module pour connexion OAuth via github
+const GitHubStrategy = require('passport-github').Strategy;
+//Charge le module bcrypt qui permet de chiffrer les mots de passe (npm install bcrypt)
 const bcrypt = require('bcrypt')
+
 
 function initialize(passport, getPlayerByLogin, gitHubfindOrCreate){
 	const authentificatePlayer = async(login, password, done) => {
+		// Récupère une instance de joueur grâce au login (unique au sein de la base de données)
 		let player = getPlayerByLogin(login);
 		if(player == null){
-			console.log("Le login du joueur qui a tenté de se connecter n'existe pas ")
 			return done(null, false, { message: 'Login inexistant' })
 		}
 
 		try{
+			//Compare le hash du mot de passe saisie et celui stocké dans la base de données
 			if(await bcrypt.compare(password, player.hashedPassword)){
-				console.log("Authentification bonne")
 			 	return done(null, player)
 			}
 			else{
-				console.log("Login bon mais mot de passe incorrect")
+				//Si le hash n'est pas bon retourne 
 				return done(null, false, { message: 'Mauvais mot de passe' })
 			}
 		}catch(e){
@@ -44,4 +48,5 @@ function initialize(passport, getPlayerByLogin, gitHubfindOrCreate){
 	})
 }
 
+//Export la fonction inialize dans un module pour la rendre utilisable dans les autres fichiers
 module.exports = initialize

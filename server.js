@@ -1,27 +1,30 @@
-//Permet de charger les variables d'envrironnement 
+//Permet de charger les variables d'envrironnement présentent dans le fichier .env
  require('dotenv').config();
-
-/*
-	TO DO : 
-	- Rajouter le port et d'autres variables dans le fichier .env
-	-http://www.passportjs.org/packages/passport-github/
-	- Pour le ban je supprime le mec ou alors je fais un état banni ??
-
-*/ 
+//Charge le module express (installé via la commande npm install express) dans la variable express
 const express = require('express')
+//Création d'une nouvelle instance express sous le nom app
 const app = express()
+//Création d'un objet router 
 const router = express.Router()
+//Charge le module bcrypt qui permet de chiffrer les mots de passe (npm install bcrypt)
 const bcrypt = require('bcrypt')
-const player_service = require('./models/player_service.js')
-const player = require('./models/player.js')
+//Charge le module flash utilisé pour afficher les messages d'erreurs lors de la connexion
 const flash = require('express-flash')
+//Charge le module session qui permet de gérer la persistance de la connexion
 const session = require('express-session')
-const dbPlayer = new player_service()
+//Charge le module passport afin de gérer l'authentification au sein de l'application
 const passport = require('passport')
+//Charge le module cookie-parser qui permet l'utilisation de cookies.
 const cookieparser = require('cookie-parser')
+//Importe et instancie le modèle pour gérer les jeux au sein de l'application
 const Game_service = require('./models/game_service.js')
 const dbGame = new Game_service()
-app.set('view-engine', 'ejs')
+//Importe et instancie le modèle pour gérer les joueur au sein de l'application
+const player_service = require('./models/player_service.js')
+const dbPlayer = new player_service()
+
+//Renseigne le moteur de template utilisé, EJS
+app.set('view engine', 'ejs')
 //https://github.com/expressjs/body-parser#bodyparserurlencodedoptions
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
@@ -39,7 +42,7 @@ initializePassport(passport, dbPlayer.getPlayerByLogin, dbPlayer.gitHubfindOrCre
 router.get('/', checkAuthenticated, function(requestHTTP, responseHTTP, next){
 	console.log("HOME PAGE ")
 	responseHTTP.cookie('login', requestHTTP.user.login);
-	responseHTTP.render('home.ejs',{pseudo: requestHTTP.user.pseudo})
+	responseHTTP.render('home.ejs',{pseudo: requestHTTP.user.pseudo, playerScores: requestHTTP.user.scores})
 })
 
 router.get('/login',checkNotAuthenticated, function(requestHTTP, responseHTTP, next){
@@ -105,7 +108,7 @@ router.get('/logout', function(requestHTTP, responseHTTP){
 
 router.get('/game1',checkAuthenticated, function(requestHTTP, responseHTTP, next){
 	console.log(requestHTTP.user)
-	responseHTTP.render('game1.ejs', {scoresList: dbGame.getGameByname('game1'), bestPlayerScore: requestHTTP.user.scores.game1, playerPseudo: requestHTTP.user.pseudo})
+	responseHTTP.render('game1.ejs', {scoresList: dbGame.getGameOrCreateByname('game1'), bestPlayerScore: requestHTTP.user.scores.game1, playerPseudo: requestHTTP.user.pseudo})
 })
 router.post('/game1',checkAuthenticated,function(requestHTTP, responseHTTP){
 	console.log(requestHTTP.body.clicksNumber)
@@ -114,7 +117,7 @@ router.post('/game1',checkAuthenticated,function(requestHTTP, responseHTTP){
 });
 router.get('/game2',checkAuthenticated, function(requestHTTP, responseHTTP, next){
 	console.log(requestHTTP.user)
-	responseHTTP.render('game2.ejs', {scoresList: dbGame.getGameByname('game2'), bestPlayerScore: requestHTTP.user.scores.game2, playerPseudo: requestHTTP.user.pseudo})
+	responseHTTP.render('game2.ejs', {scoresList: dbGame.getGameOrCreateByname('game2'), bestPlayerScore: requestHTTP.user.scores.game2, playerPseudo: requestHTTP.user.pseudo})
 })
 router.post('/game2',checkAuthenticated,function(requestHTTP, responseHTTP){
 	console.log(requestHTTP.body.reactionTime)
@@ -132,7 +135,10 @@ router.get('/admin/ban/:login', checkAuthenticated, isAdmin, function(requestHTT
 	responseHTTP.redirect('/admin')
 });
 
+
+//Middleware qui permet de vérifier si la joueur est connecté
 function checkAuthenticated(requestHTTP, responseHTTP, next) {
+  //Si le joueur
   if (requestHTTP.isAuthenticated()) {
     return next()
   }
@@ -156,9 +162,12 @@ function isAdmin(requestHTTP, responseHTTP, next){
 	}
 	next()
 }
+
+
+//Permet d'appeler le middleware routeur pour toutes les requêtes.
 app.use('/',router)
 app.use(express.static(__dirname + '/public'))
 
-app.listen(3000, function(){
+app.listen(process.env.PORT, function(){
 	console.log("Server listening on port 3000")
 })

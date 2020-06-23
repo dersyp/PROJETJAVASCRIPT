@@ -2,13 +2,14 @@
   "ScoresGame": [
     {
       "name": "game1",
-      "highScore": 28,
+      "highScore": 30,
       "rankings": {
         "34368902": 21,
         "q": 40,
         "a": 6,
         "c": 7,
-        "dersyp": 27
+        "dersyp": 27,
+        "clementhyaumet": 30
       }
     },
     {
@@ -16,6 +17,22 @@
       "highScore": 391,
       "rankings": {
         "q": 391
+      }
+    }
+  ],
+  "Games": [
+    {
+      "name": "game2",
+      "highScore": 0,
+      "rankings": {
+        "q": 379
+      }
+    },
+    {
+      "name": "game1",
+      "highScore": 39,
+      "rankings": {
+        "a": 39
       }
     }
   ]
