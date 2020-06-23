@@ -116,7 +116,11 @@ router.get('/game2',checkAuthenticated, function(requestHTTP, responseHTTP, next
 	console.log(requestHTTP.user)
 	responseHTTP.render('game2.ejs', {scoresList: dbGame.getGameByname('game2'), bestPlayerScore: requestHTTP.user.scores.game2, playerPseudo: requestHTTP.user.pseudo})
 })
-
+router.post('/game2',checkAuthenticated,function(requestHTTP, responseHTTP){
+	console.log(requestHTTP.body.reactionTime)
+	dbGame.updateGameScore(requestHTTP.user.pseudo,"game2",requestHTTP.body.reactionTime)
+	dbPlayer.updatePlayerScore(requestHTTP.user.login,"game2",requestHTTP.body.reactionTime)
+});
 
 router.get('/admin', checkAuthenticated, isAdmin, function(requestHTTP, responseHTTP){
 	console.log(dbPlayer.readPlayers())

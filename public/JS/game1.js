@@ -15,11 +15,12 @@ $( document ).ready(function() {
            $(".clique").show();
            $("#clickArea").off('click');
          clearInterval(t)
-          var xhttp = new XMLHttpRequest();
-          xhttp.open('POST', '/game1', true)
-          xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          let body = "clicksNumber="+countClick
           if(countClick > bestPlayerScore){
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('POST', '/game1', true)
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            let body = "clicksNumber="+countClick
+            xhttp.send(body);
             bestPlayerScore = countClick;
             $("#bestPlayerScore").html("Mon meilleur score : "+bestPlayerScore)
             $("#currentPlayer").html(bestPlayerScore)
@@ -28,7 +29,6 @@ $( document ).ready(function() {
               $("#bestGameScore").html("Meilleur score au jeu : "+highScore)
             }
           }
-          xhttp.send(body);
          $('#scorePlayer').html("Score final : "+ countClick)
           gameState = false;
            setTimeout(function () {

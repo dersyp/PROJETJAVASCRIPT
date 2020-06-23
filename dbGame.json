@@ -5,7 +5,7 @@
       "highScore": 28,
       "rankings": {
         "34368902": 21,
-        "q": 28,
+        "q": 40,
         "a": 6,
         "c": 7,
         "dersyp": 27
@@ -13,8 +13,10 @@
     },
     {
       "name": "game2",
-      "highScore": 0,
-      "rankings": {}
+      "highScore": 391,
+      "rankings": {
+        "q": 391
+      }
     }
   ]
 }

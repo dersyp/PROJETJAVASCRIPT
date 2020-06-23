@@ -40,19 +40,34 @@ class Game_service{
 		let currentGame = this.getGameByname(name)
 		let scoreInt = parseInt(score, 10);
 		//Ajout du score dans le rankings.
-		if(currentGame.rankings[pseudo]){
-			if(scoreInt > currentGame.rankings[pseudo]){
-				currentGame.rankings[pseudo] = scoreInt
+		if(name == "game1"){
+			if(!currentGame.rankings[pseudo] || scoreInt > currentGame.rankings[pseudo]){
+				if(currentGame.rankings[pseudo]){
+					currentGame.rankings[pseudo] = scoreInt
+				}
+				else{
+					Object.assign(currentGame.rankings,{[pseudo]: scoreInt});
+				}
 				dbGame.get('ScoresGame').find({ name: name }).assign({ rankings: currentGame.rankings}).write();
+				if(scoreInt > currentGame.highScore){
+					console.log("Update du jeu "+ name + " avec le  score "+ scoreInt)
+					dbGame.get('ScoresGame').find({ name: name}).assign({ highScore: scoreInt}).write();
+				}
 			}
-		}else{
-			Object.assign(currentGame.rankings,{[pseudo]: scoreInt});
-			dbGame.get('ScoresGame').find({ name: name }).assign({ rankings: currentGame.rankings}).write();
-		}
-		// Modifie le score max du jeu si celui-ci est dépassé
-		if(scoreInt > currentGame.highScore){
-			console.log("Update du jeu "+ name + " avec le  score "+ scoreInt)
-			dbGame.get('ScoresGame').find({ name: name}).assign({ highScore: scoreInt}).write();
+		}else if(name == "game2"){
+			if(!currentGame.rankings[pseudo] || scoreInt < currentGame.rankings[pseudo]){
+				if(currentGame.rankings[pseudo]){
+					currentGame.rankings[pseudo] = scoreInt
+				}
+				else{
+					Object.assign(currentGame.rankings,{[pseudo]: scoreInt});
+				}
+				dbGame.get('ScoresGame').find({ name: name }).assign({ rankings: currentGame.rankings}).write();
+				if(scoreInt < currentGame.highScore){
+					console.log("Update du jeu "+ name + " avec le  score "+ scoreInt)
+					dbGame.get('ScoresGame').find({ name: name}).assign({ highScore: scoreInt}).write();
+				}
+			}
 		}
 	}
 }

@@ -1,22 +1,26 @@
 $( document ).ready(function() {
   var gameState = false;
-  var initialDateSeconds;
-  var initialDateMicroSeconds;
-  var endDateSeconds;
-  var endDateMicroSeconds;
   var timeout;
-   function changeState(){
+  var initialTime;
+  var cancelTimeout;
+   function changeState(event){
     $('#clickArea').css({"background": "linear-gradient(45deg, #ffbd00, #ff9a00, #ff6d00, #ff3400)"})
     //Stocker une date
-    initialDateSeconds = new Date().getSeconds();
-    initialDateMicroSeconds = new Date().getMilliseconds();
+    initialTime = new Date().getTime();
+    cancelTimeout = setTimeout(cancelGame,5000);
    }
    function rebuildBoard(){
+    gameState = false;
+    initialTime = 0
     $(".clique").show();
     $('#clickArea').css({"background": "linear-gradient(45deg, #ffbd00, #ff9a00, #ff6d00, #ff3400)"})
    }
 
-
+   function cancelGame(){
+      clearTimeout(timeout)
+       $('#result').html("Vous devez cliquer lors du changement de couleur")
+      rebuildBoard()
+   }
     $("#clickArea").click(function(){
       $(".clique").hide();
     if(!gameState){
@@ -26,16 +30,16 @@ $( document ).ready(function() {
       timeout = setTimeout(changeState,randomDelay)
       gameState = true
     }else{
-      endDateSeconds = new Date().getSeconds();
-      endDateMicroSeconds = new Date().getMilliseconds();
-      if(initialDateSeconds){
-        $('#result').html("Vous avez mis"+(endDateSeconds-initialDateSeconds)+","+(endDateMicroSeconds-initialDateMicroSeconds))
+      clearTimeout(cancelTimeout)
+      if(initialTime > 0){
+        let reactionTime = new Date().getTime() - initialTime
+        updateScore(reactionTime);
+        $('#result').html("Vous avez mis " + reactionTime + "ms")
       }else{
         $('#result').html("Trop rapide")
         clearTimeout(timeout);
       }
       rebuildBoard();
-      gameState = false;
     }
     });
 
@@ -52,6 +56,23 @@ $( document ).ready(function() {
         }, 3000);
     });
 
+
+    function updateScore(reactionTime){
+      if((reactionTime < bestPlayerScore) || bestPlayerScore == 0){
+         var xhttp = new XMLHttpRequest();
+        xhttp.open('POST', '/game2', true)
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        let body = "reactionTime="+reactionTime
+         xhttp.send(body);
+        bestPlayerScore = reactionTime;
+        $("#bestPlayerScore").html("Mon meilleur score : "+bestPlayerScore + " ms ")
+        $("#currentPlayer").html(bestPlayerScore)
+        if((reactionTime < highScore) || highScore == 0){
+          highScore = reactionTime
+          $("#bestGameScore").html("Meilleur score au jeu : "+highScore +" ms")
+        }
+      }
+    }
 
 
 });
