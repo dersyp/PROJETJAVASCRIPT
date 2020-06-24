@@ -1,5 +1,6 @@
 # PROJETJAVASCRIPT
 
+Groupe de projet : Clément HYAUMET, Mathieu TERMET
 
 Installation express :
 npm install express
@@ -46,5 +47,3 @@ https://stackoverflow.com/questions/27637609/understanding-passport-serialize-de
 
 
 http://www.passportjs.org/docs/
-
-// Voir
