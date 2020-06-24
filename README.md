@@ -38,7 +38,7 @@ npm install passport-github
 
 
 Lancer le serveur :
-node index.js
+node server.js
 
 
 Explication serialize - deserialize :
