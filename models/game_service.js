@@ -39,7 +39,7 @@ class Game_service{
 			//Si info n'est pas null instancie un nouvel objet jeu à partir des informations récupérées dans la base de données
 			currentGame = new Game(infoGame.name, infoGame.highScore, infoGame.rankings)
 		}else{
-			//Si il existe pas on le créé grâce au nom et des valeurs par defaut.
+			//Si il existe pas on le créé grâce au nom et des valeurs par défaut.
 			currentGame = new Game(name,0,{})
 			this.createGame(currentGame)
 		}
@@ -53,7 +53,7 @@ class Game_service{
 		let currentGame = this.getGameOrCreateByname(name)
 		//Convertit le score en integer et stocke celui-ci dans une variable pour l'ajouter dans la base de données si besoin
 		let scoreInt = parseInt(score, 10);
-		//Sctructure condionnelle qui permet de vérifier si le joueur à un score stocké dans la base de données et si oui si le score réalisé est  meilleur
+		//Structure conditionnelle qui permet de vérifier si le joueur à un score stocké dans la base de données et si oui si le score réalisé est  meilleur
 		//Ici la condition prend en compte le nom du jeu car selon le jeu meilleure valeur peut-être la plus grand ou la plus petite
 		if(((!currentGame.rankings[pseudo] || scoreInt > currentGame.rankings[pseudo]) && name == "clicker") || ((!currentGame.rankings[pseudo] || scoreInt < currentGame.rankings[pseudo]) && name == "reaction")){
 			if(currentGame.rankings[pseudo]){
@@ -61,7 +61,7 @@ class Game_service{
 				currentGame.rankings[pseudo] = scoreInt
 			}
 			else{
-				//Se joueur n'a pas de score attribué pour ce jeu on ajoute une ligne avec le pseudo du joueur et le score effectué
+				//Si le joueur n'a pas de score attribué pour ce jeu, on ajoute une ligne avec le pseudo du joueur et le score effectué
 				Object.assign(currentGame.rankings,{[pseudo]: scoreInt});
 			}
 			//Met à jour le tableau du score des différents joueurs pour le jeu dans la base de données

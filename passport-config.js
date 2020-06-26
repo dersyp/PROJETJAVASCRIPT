@@ -29,11 +29,11 @@ function initialize(passport, getPlayerByLogin, gitHubfindOrCreate){
 			return done(e)
 		}
 	}
-	// Ajoute l'utilisation de la statégie locale pour la connexion via passport
+	// Ajoute l'utilisation de la stratégie locale pour la connexion via passport
 	passport.use(new LocalStrategy({usernameField: 'login'},authentificatePlayer))
-	// Ajoute l'utilisation de la statégie oAuth de github pour la connexion via passport
+	// Ajoute l'utilisation de la stratégie oAuth de github pour la connexion via passport
 	passport.use(new GitHubStrategy({
-	//Informations necessaires pour utiliser Oauth de github (récupéré sur leurs site)
+	//Informations nécessaires pour utiliser Oauth de github (récupéré sur leurs site)
     clientID: '356367cf9e51be1ba1b0',
     clientSecret: 'c7d4a50f627839695d9e99aeb69b91d69128c3a2',
     callbackURL: "http://localhost:3000/login/github/return"
@@ -50,5 +50,5 @@ function initialize(passport, getPlayerByLogin, gitHubfindOrCreate){
 	})
 }
 
-//Export la fonction inialize dans un module pour la rendre utilisable dans les autres fichiers
+//Export la fonction initialize dans un module pour la rendre utilisable dans les autres fichiers
 module.exports = initialize

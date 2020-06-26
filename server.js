@@ -1,4 +1,4 @@
-//Permet de charger les variables d'envrironnement présentent dans le fichier .env
+//Permet de charger les variables d'envrironnement présentes dans le fichier .env
  require('dotenv').config();
 //Charge le module express (installé via la commande npm install express) dans la variable express
 const express = require('express')
@@ -41,7 +41,7 @@ app.use(session({
 app.use(cookieparser())
 //Ajout du middleware passport.initialize sur l'instance express app pour initialiser le module passport
 app.use(passport.initialize())
-//Ajout du middleware passport.session sur l'instance express app pour rendre la connexion persistente
+//Ajout du middleware passport.session sur l'instance express app pour rendre la connexion persistante
 app.use(passport.session())
 //Appel de la fonction qui permet de gérer les connexions
 initializePassport(passport, dbPlayer.getPlayerByLogin, dbPlayer.gitHubfindOrCreate)
